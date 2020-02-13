@@ -1,11 +1,12 @@
 using System;
 using CS321_W5D1_ExerciseLogAPI.Core.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace CS321_W5D1_ExerciseLogAPI.Infrastructure.Data
 {
-    // TODO: inherit from IdentityDbContext
-    public class AppDbContext : DbContext
+    // inherit from IdentityDbContext
+    public class AppDbContext : IdentityDbContext
     {
         public DbSet<ActivityType> ActivityTypes { get; set; }
         public DbSet<Activity> Activities { get; set; }
@@ -34,7 +35,7 @@ namespace CS321_W5D1_ExerciseLogAPI.Infrastructure.Data
                 new User { Id = "123", FirstName = "John", LastName = "Doe" }
             );
 
-            // TODO: configure some seed data in the books table
+            // configure some seed data in the books table
             builder.Entity<Activity>().HasData(
                 new Activity { Id = 1, UserId = "123", ActivityTypeId = 1, Date = new DateTime(2019, 6, 19), Distance = 3, Duration = 30, Notes = "Hot!!!!" }
             );
